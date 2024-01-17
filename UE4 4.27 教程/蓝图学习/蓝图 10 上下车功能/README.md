@@ -1,4 +1,4 @@
-- [【蓝图】10课：角色上下车功能\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV164411Y732?t=139.4&p=44)
+- [【蓝图】10课：角色上下车功能](https://www.bilibili.com/video/BV164411Y732?t=139.4&p=44)
 ---
 
 汽车蓝图要实现：
