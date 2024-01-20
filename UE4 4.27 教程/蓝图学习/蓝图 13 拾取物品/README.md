@@ -37,8 +37,7 @@
 由于是想要制作从视线发出的一条射线与场景中物体的交互，所以：
 - `start` 和 `end` 利用角色相机的 `GetWorldLocation` 和 `GetForwardVector` 节点来设置
 
-在 `DrawDebugType` 中选择 `Duration`，使生成的射线延迟消失，目前得到的效果如下：
-
+在 `DrawDebugType` 中选择 `Duration`，使生成的射线延迟消失以供 debug 使用
 
 
 ## 自定义碰撞 Channel
@@ -64,12 +63,12 @@
 
 蓝图接口的官方文档链接：[Blueprint Interface | Unreal Engine Documentation](https://docs.unrealengine.com/4.26/en-US/ProgrammingAndScripting/Blueprints/UserGuide/Types/Interface/)
 
-- 在之前新建立的静态网格体的位置，新建立 `Blueprint Interface` 用以建立蓝图接口
+- 在之前新建立的骨骼网格体的位置，新建立 `Blueprint Interface` 用以建立蓝图接口
 - 在蓝图接口中右侧添加三个函数，分别为
 	- `PickUp`
 	- `CustomDepthOpen`
 	- `CustomDepthClose`
-- 在回到用以拾取的静态网格体，打开蓝图，在如下位置添加新建的蓝图接口
+- 回到用以拾取的骨骼网格体，打开蓝图，在如下位置添加新建的蓝图接口
 
 ![](img/Pasted%20image%2020240119231853.png)
 
