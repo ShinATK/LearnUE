@@ -1,4 +1,4 @@
-#cg #ue4 
+#gamedev  #ue4 
 - [【蓝图】02-1课：按键+鼠标点击实现开关门\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV164411Y732?t=44.3&p=28)
 	- 创建门的蓝图类
 		- Actor 和组件的区别、门的轴心点修改
