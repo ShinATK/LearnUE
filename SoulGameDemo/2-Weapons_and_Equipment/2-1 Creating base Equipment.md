@@ -10,9 +10,10 @@
 2. Base Equippable actor class 
    - 设置装备/卸下的功能函数
    - 附加到模型上的功能函数
+   - 及其他
 3. 将武器附加到人物模型上
-   - Socket
-   - collision off and no can step on
+   - 设置 [**Socket(官方文档链接)**](https://docs.unrealengine.com/4.27/zh-CN/WorkingWithContent/Types/StaticMeshes/HowTo/Sockets/)
+   - 关闭 **Collision**
 
 
 
@@ -26,5 +27,6 @@
   - [官方文档链接：Instigator](https://docs.unrealengine.com/4.27/en-US/API/Runtime/Engine/Engine/FActorSpawnParameters/Instigator/)
   - 例如：坦克开炮命中敌人，坦克是炮弹的 Owner，而按下开炮按钮导致造成伤害的人就是这个 Instigator。参考自：[SpawnActor 的 Owner 和 Instigator 参数](https://blog.csdn.net/wangchao701123/article/details/120988921)
 
-
+- Socket：一种接口，链接不同的 actor
+  - [官方文档链接](https://docs.unrealengine.com/4.27/zh-CN/WorkingWithContent/Types/StaticMeshes/HowTo/Sockets/)
 
