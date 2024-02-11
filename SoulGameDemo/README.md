@@ -5,7 +5,7 @@
 
 - 2 Weapons and Equipment
   - [x] [2-1 Creating base Equipment](./2-Weapons_and_Equipment/2-1%20Creating%20base%20Equipment.md)
-  - [ ] 2-2 Equip & Unequip Weapons
+  - [x] [2-2 Equip & Unequip Weapons](./2-Weapons_and_Equipment/2-2%20Equip%20and%20Unequip%20Weapon.md)
   - [ ] 2-3 Creating the pickup Actor
   - [ ] 2-4 Different Weapon Styles
   - [ ] 2-5 Fixing Bugs
