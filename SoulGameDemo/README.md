@@ -83,7 +83,11 @@ accessed none trying to read property K2Node Dynamic Cast As Character
 - 注意这里连接了`instigator`，目的是后续 armor 的减伤，如果只是将 actor 生成在 owner 上，只需要连接 owner。
 - 这里没有设置 socket，保持着默认的 none。可能是因为这套 armor 是 ue4 人物专用的原因，高度位置等已经对应设置好，所以生成后位置就在正确的位置。同时由于设置了 leader component，从而使得 armor 会随着人物发生同样的变换给人一种，穿在了对应 socket 位置的错觉
 
-### 010 Gameplay Tags
+### 011 Dual Wield Weapons
+
+#### 问题一：装备/卸下双手武器动画无法移动
+
+原因：启用了根运动，导致动画插槽设置为上半身仍然无法移动。
 
 
 
