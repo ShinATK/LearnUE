@@ -89,5 +89,14 @@ accessed none trying to read property K2Node Dynamic Cast As Character
 
 原因：启用了根运动，导致动画插槽设置为上半身仍然无法移动。
 
+### 012 Targeting System
+
+非本节内容问题：单手武器设置的武器攻击特效没有正常播放，而双手武器攻击特效则正常。
+
+原因：
+- 给武器设置碰撞检测时使用的节点是 `Multi Sphere Trace For Objects`，其中需要传入 `Mesh` 要检测的区间，这个区间通过设置 `Socket Name` 来指定
+- 经过检查，发现单手武器的 `CollisionComponent` 中的这两个参数被设置成了 `None`，改回之前设置的参数后正常（很怪，我不记得我动过这个）
+
+
 
 
