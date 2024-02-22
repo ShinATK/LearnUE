@@ -97,6 +97,11 @@ accessed none trying to read property K2Node Dynamic Cast As Character
 - 给武器设置碰撞检测时使用的节点是 `Multi Sphere Trace For Objects`，其中需要传入 `Mesh` 要检测的区间，这个区间通过设置 `Socket Name` 来指定
 - 经过检查，发现单手武器的 `CollisionComponent` 中的这两个参数被设置成了 `None`，改回之前设置的参数后正常（很怪，我不记得我动过这个）
 
+### 013 Targeting System Continued
 
+Bug till now
+- In Targeting system: Character will continue the state of Orient to Camera though the target is dead.
 
+Fix bug:
+- Set a BPI to actor, so actor can send message that whether they can be targeted.
 
