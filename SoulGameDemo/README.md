@@ -105,3 +105,14 @@ Bug till now
 Fix bug:
 - Set a BPI to actor, so actor can send message that whether they can be targeted.
 
+
+### 014 Hit Reaction System
+
+[Node `GetDotProductTo`](https://docs.unrealengine.com/5.0/en-US/BlueprintAPI/Transformation/GetDotProductTo/)
+
+> Returns the dot product from this Actor to OtherActor. Returns -2.0 on failure. Returns 0.0 for coincidental actors.
+
+![alt text](img/GetDotProductTo.png)
+
+The connection in the pic above is correct. But i met a bug, when first connect the node, the case is "Target to GetControlledPawn" and "OtherActor to Self": this caused a inversed results, when i want to distinct the front and back, it only returned the value that > 0.
+
