@@ -2,6 +2,10 @@
 - [课程的 Udemy 网页链接](https://www.udemy.com/course/unreal-engine-5-soulslike-combat/)
 - [虚幻五官方文档](https://docs.unrealengine.com/5.3/zh-CN/level-editor-in-unreal-engine/)
 
+**Remember to figure out some nodes.**
+
+尝试搞懂一些结点的实现方式，最好能够根据自己的理解魔改一下
+
 
 # Bug 合集
 
@@ -116,3 +120,21 @@ Fix bug:
 
 The connection in the pic above is correct. But i met a bug, when first connect the node, the case is "Target to GetControlledPawn" and "OtherActor to Self": this caused a inversed results, when i want to distinct the front and back, it only returned the value that > 0.
 
+## 05 Enemy Combat AI
+
+### 007 Different Enemy Types
+
+Till now, the enemy is just moving to target player location, and play attack animations when in range. 
+
+**There is no any hit correction system. So you can just stand behind enemy, and they will continue play the attack animations.**
+
+
+### 008 System & Gameplay Improvements
+
+Camera Glitch Fixed: 
+
+- Ignore the Collision between Pawn and Camera
+![FixCameraBug-1](img/FixCameraBug-1.png)
+
+- Ignore the Collision between Character Mesh and Camera
+![FixCameraBug-2](img/FixCameraBug-2.png)
