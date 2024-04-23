@@ -336,7 +336,7 @@ void UMyRandomNumberWidget::NativeDestruct()
 # 知识点
 
 - 类型相关
-  - [UClass](../../U++学习/)
+  - [UClass](../../U++学习)
   - [TSubclassOf](../../U++学习/TSubclassOf.md)
   - [LoadClass<T>()](../../U++学习/动态加载：LoadClass和LoadObject.md)
 - 数学模块
