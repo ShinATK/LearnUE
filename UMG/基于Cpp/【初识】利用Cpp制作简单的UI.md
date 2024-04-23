@@ -239,14 +239,23 @@ void UMyRandomNumberWidget::CreateAnotherWidget()
 {
 	if (!AnotherWidget) // 没有创建的时候才能创建，比在 BP 里舒服也简洁
 	{
-        /* 创建另一个 Widget 所需要的 */
-        // 控件蓝图路径：在编辑器里右键蓝图选择复制引用路径
-        FString AnotherWidgetClassLoadPath = FString(TEXT("/Game/_LearnUEC++/WB_MyUserWidget.WB_MyUserWidget_C")); // 注意末尾要加 _C
-        // 加载类
-        TSubclassOf<UUserWidget> AnotherWidgetClass = LoadClass<UUserWidget>(NULL, *AnotherWidgetClassLoadPath);
+		/* 创建另一个 Widget 所需要的 */
+		// 控件蓝图路径：在编辑器里右键蓝图选择复制引用路径
+		FString AnotherWidgetClassLoadPath = FString(TEXT("/Game/_LearnUEC++/WB_MyUserWidget.WB_MyUserWidget_C")); // 注意末尾要加 _C
+		// 加载类
+		TSubclassOf<UUserWidget> AnotherWidgetClass = LoadClass<UUserWidget>(NULL, *AnotherWidgetClassLoadPath);
 
 		AnotherWidget = CreateWidget(GetWorld(), AnotherWidgetClass);
 		AnotherWidget->AddToViewport();
+	}
+}
+/* 移除 widget */
+void UMyRandomNumberWidget::RemoveAnotherWidget()
+{
+	if (AnotherWidget) // 有这个 widget 才去 remove
+	{
+		AnotherWidget->RemoveFromParent();
+		AnotherWidget = nullptr; // 置空，防止裸指针
 	}
 }
 ```
@@ -328,8 +337,8 @@ void UMyRandomNumberWidget::NativeDestruct()
 
 - 类型相关
   - [UClass](../../U++学习/)
-  - [TSubclassOf](../../U++学习/模板类：TSubclassOf.md)
-  - [LoadClass<T>()](../../U++学习/动态加载.md)
+  - [TSubclassOf](../../U++学习/TSubclassOf.md)
+  - [LoadClass<T>()](../../U++学习/动态加载：LoadClass和LoadObject.md)
 - 数学模块
   - [FColor](../../U++学习/Math/FColor.md)
   - [FMath](../../U++学习/Math/FMath.md)
