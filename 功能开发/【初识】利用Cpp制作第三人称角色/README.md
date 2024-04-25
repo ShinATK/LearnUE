@@ -129,7 +129,7 @@ SpringComp->SetupAttachment(RootComponent);
 CameraComp->SetupAttachment(SpringComp);
 ```
 
-这里涉及到`SetupAttachment`和`AttachToComponent`，参考笔记：[两种组件层级设置方式](../../学习笔记/Component/组件依附：SetupAttachment和AttachToComponent.md)
+这里涉及到`SetupAttachment`和`AttachToComponent`，参考笔记：[两种组件层级设置方式](../../学习笔记/UE源码相关/Component/组件依附：SetupAttachment和AttachToComponent.md)
 
 ## 5. 设置组件默认值
 
@@ -147,7 +147,7 @@ bUseControllerRotationPitch = false;
 GetCharacterMovement()->bOrientRotationToMovement = true;
 ```
 
-在这里是对相机的设置，这些具体的区别可以查看[这里](../../学习笔记/控制旋转和旋转朝向运动.md)
+在这里是对相机的设置，这些具体的区别可以查看[这里](../../学习笔记/UE源码相关/控制旋转和旋转朝向运动.md)
 
 至此，角色相机的设置就完成了。
 
