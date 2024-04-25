@@ -113,9 +113,14 @@ SpringComp = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringComp"));
 
 这一步比较重要，如果类中没有任何组件，是一个空的 `Actor`，添加了 `Component` 后会自动将第一个组件设置为默认的场景根组件
 
-最重要的一点：**一定要记得设置依附层级关系，尤其是对场景根组件的依附设置，创建一个就设置依附于根组件（除了需要依附其他组件的情况）**
+> 对于我个人而言，我会特地创建一个默认的场景组件作为根组件，而不是将其他的组件设置为根组件
+> ```cpp
+> /* 创建默认根组件 */
+> DefaultSceneRoot = CreateDefaultSubobject<USceneComponent>(TEXT("DefaultRootScene"));
+> SetRootComponent(DefaultSceneRoot);
+> ```
 
-否则会出现将 `Actor` 拖入场景中后组件之间发生偏移的情况
+最重要的一点：**一定要记得设置依附层级关系，尤其是对场景根组件的依附设置，创建一个就设置依附于根组件（除了需要依附其他组件的情况）**，否则会出现将 `Actor` 拖入场景中后组件之间发生偏移的情况
 
 ```cpp
 /* 弹簧臂附加到根节点 */
@@ -326,3 +331,19 @@ void ACpp_PlayerCharacter::StopJumping()
 
 ![](img/第三人称角色运动效果.gif)
 
+
+# 补充
+
+之前忘记提需要在蓝图中的设置了
+
+按照上边步骤设置完后编译运行，发现角色蓝图中看不到角色，需要选择网格体并设置骨骼网格体和对应的动画蓝图
+
+![alt text](img/蓝图中网格体和动画蓝图的设置.png)
+
+另外还可能发现添加骨骼网格体后出现偏移的情况：
+
+![alt text](img/添加骨骼网格体后的偏移.png)
+
+个人的设置：
+
+![alt text](img/骨骼网格体偏移修正设置.png)
