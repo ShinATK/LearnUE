@@ -129,7 +129,7 @@ SpringComp->SetupAttachment(RootComponent);
 CameraComp->SetupAttachment(SpringComp);
 ```
 
-这里涉及到`SetupAttachment`和`AttachToComponent`，参考笔记：[两种组件层级设置方式](../../学习笔记/组件依附：SetupAttachment和AttachToComponent.md)
+这里涉及到`SetupAttachment`和`AttachToComponent`，参考笔记：[两种组件层级设置方式](../../学习笔记/Component/组件依附：SetupAttachment和AttachToComponent.md)
 
 ## 5. 设置组件默认值
 

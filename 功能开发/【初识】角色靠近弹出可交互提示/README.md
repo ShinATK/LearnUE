@@ -183,6 +183,8 @@ if (GetBeginOverlapedTarget)
 
 接下来，还需要得到玩家的 `WidgetComponent` 与 组件中的 `widget`
 
+要使用的方法为`GetComponentByClass()`
+
 所以得到组件同理
 
 ```cpp
@@ -221,7 +223,117 @@ if (Widget)
 
 要想有不同的外观，只需要另外设置 `MeshComponent` 就好了
 
+---
+# 补充 1
+
+先前写的太丑了，尤其是`OnOverlapBegin`中的一大坨逻辑，实际上可以把不少东西都放到各自的内部实现。
+
+比如，`InteractableActor`的目的是**检测玩家是否在可交互范围**和**检测玩家朝向**（见下文实现），所以它的功能，仅仅是负责：
+- 当玩家在可交互范围时，告诉玩家自己的交互信息
+- 当玩家朝向自己时，让玩家显示交互提示控件
+
+此时`OnOverlapBegin`就可以重新整理成为：
+
+```cpp
+void ACpp_InteractableActor::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	OverlapedTarget = Cast<ACpp_PlayerCharacter>(OtherActor);
+	if (OverlapedTarget)
+	{
+		OverlapedTarget->RefreshWidgetComp(This_ActorName, This_ActorIcon, This_InteractKeyIcon);
+	}
+}
+```
+
+这样`InteractableActor`只负责告诉玩家自己的信息，至于更新 WidgetComponent？让玩家自己去做吧。
+
+注意这里还额外存储了当前获取到的玩家信息，也方便后边计算玩家的朝向。**记得在`OnOverlapEnd`中将这个变量置为 nullptr**
+
+同理，在传给玩家后，玩家要通知自己的 WidgetComponent 组件去更新控件中的信息
+
+```cpp
+void ACpp_PlayerCharacter::RefreshWidgetComp(FText& ActorName, UTexture2D* ActorIcon, UTexture2D* InteractKeyIcon)
+{
+	if (InteractableHintWidgetComp)
+	{
+		InteractableHintWidgetComp->RefreshWidget(ActorName, ActorIcon, InteractKeyIcon);
+	}
+}
+```
+
+继续，WidgetComponent 再通知 Widget 去更新：
+
+```cpp
+void UCpp_InteractableHintWidget::Refresh(FText& ActorName, UTexture2D* ActorIcon, UTexture2D* InteractKeyIcon)
+{
+	this->SetActorName(ActorName);
+	this->SetActorIcon(ActorIcon);
+	this->SetKeyIcon(InteractKeyIcon);
+}
+```
+
+这样，每一步的代码都不多，而且能比之前清晰的看出来这些代码的目的。
+
+---
+# 补充 2
+
+在补充 1 中重构了`OnOverlapBegin`函数，并提到了检测玩家朝向的问题，下面开始实现
+
+在 MHW 中的交互提示实现中，还存在对玩家朝向的判定
+
+![alt text](img/游戏中人物朝向判定.png)
+
+实现起来不难，获取一下角色的朝向，计算一下角色位置和交互物体位置向量差，点乘一下判断正负即可。
+
+继续在`InteractableActor`中设置，增加方法：`bool ACpp_InteractableActor::IsOtherActorFaceToThisActor()`
+
+具体实现如下：
+
+```cpp
+bool ACpp_InteractableActor::IsOtherActorFaceToThisActor()
+{
+	if (OverlapedTarget)
+	{
+		FVector OtherActorToThisActor = GetActorLocation() - OverlapedTarget->GetActorLocation();
+		OtherActorToThisActor.Normalize();
+		float bIsFaceToThis = FVector::DotProduct(OtherActorToThisActor, OverlapedTarget->GetActorForwardVector());
+		if (bIsFaceToThis > 0.3) // 这个值可以在 0~1 之间任意选取
+		{
+			return true;
+		}
+	}
+	return false;
+}
+```
+
+为了能实时检测玩家朝向，这个方法必然要在 `Tick()` 中调用，由于我们设置了一个变量 `OverlapedTarget`，可以很方便的通过判断`if(OverlapedTarget != nullptr)`来作为玩家是否在有效范围内的判据，从而有：
+
+```cpp
+void ACpp_InteractableActor::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	if (OverlapedTarget)
+	{
+		bool bIsFaceTo = IsOtherActorFaceToThisActor();
+		OverlapedTarget->ResetWidgetComp(bIsFaceTo);
+	}
+}
+```
+
+从而实现，玩家在交互范围内（`OverlapedTarget != nullptr`），并且朝向可交互物体 (`bIsFaceTo == true`) 时，才会显示提示控件
+
+# 补充后的效果图
+
+![](./img/角色靠近可交互物体弹出可交互提示_补充版本.gif)
+
 
 ---
 
 至此，已经可以实现开始的效果图中的效果
+
+过程中的一些知识点：
+- `LoadClass`：[参考这里](../../学习笔记/动态加载：LoadClass和LoadObject.md)
+- 蓝图的引用地址最后要加上 `_C` 后缀
+- 碰撞检测，注意`OnOverlapBegin`和`OnOverlapEnd`的函数签名；事件绑定，绑定要在`BeginPlay()`中进行。可以[参考这里](../../学习笔记/Component/Collision的Overlap事件_检测和绑定.md)
+- `GetComponentByClass()`：[参考这里](../../学习笔记/Component/GetComponentByClass().md)
