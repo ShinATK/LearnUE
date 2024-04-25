@@ -50,7 +50,7 @@ UCpp_InteractableComponent::UCpp_InteractableComponent()
 }
 ```
 
-这里需要提的是设置`WidgetClass`，可以参考[这里](../../学习笔记/动态加载：LoadClass和LoadObject.md)
+这里需要提的是设置`WidgetClass`，可以参考[这里](../../学习笔记/UE源码相关/动态加载：LoadClass和LoadObject.md)
 
 通过`LoadClass`来加载蓝图并获取蓝图的 Class，要注意这里的模板参数，要写成**蓝图中所设置的父类**（可以参考[这里的第三步中的内容](../【初识】利用Cpp制作简单的UI/README.md)）
 
@@ -333,7 +333,7 @@ void ACpp_InteractableActor::Tick(float DeltaTime)
 至此，已经可以实现开始的效果图中的效果
 
 过程中的一些知识点：
-- `LoadClass`：[参考这里](../../学习笔记/动态加载：LoadClass和LoadObject.md)
+- `LoadClass`：[参考这里](../../学习笔记/UE源码相关/动态加载：LoadClass和LoadObject.md)
 - 蓝图的引用地址最后要加上 `_C` 后缀
-- 碰撞检测，注意`OnOverlapBegin`和`OnOverlapEnd`的函数签名；事件绑定，绑定要在`BeginPlay()`中进行。可以[参考这里](../../学习笔记/Component/Collision的Overlap事件_检测和绑定.md)
+- 碰撞检测，注意`OnOverlapBegin`和`OnOverlapEnd`的函数签名；事件绑定，绑定要在`BeginPlay()`中进行。可以[参考这里](../../学习笔记/UE源码相关/Component/Collision的Overlap事件_检测和绑定.md)
 - `GetComponentByClass()`：[参考这里](../../学习笔记/Component/GetComponentByClass().md)

@@ -337,19 +337,19 @@ void UMyRandomNumberWidget::NativeDestruct()
 
 - 类型相关
   - [UClass](../../学习笔记)
-  - [TSubclassOf](../../学习笔记/TSubclassOf.md)
-  - [LoadClass<T>()](../../学习笔记/动态加载：LoadClass和LoadObject.md)
+  - [TSubclassOf](../../学习笔记/UE源码相关/TSubclassOf.md)
+  - [LoadClass<T>()](../../学习笔记/UE源码相关/动态加载：LoadClass和LoadObject.md)
 - 数学模块
-  - [FColor](../../学习笔记/Math/FColor.md)
-  - [FMath](../../学习笔记/Math/FMath.md)
+  - [FColor](../../学习笔记/UE源码相关/Math/FColor.md)
+  - [FMath](../../学习笔记/UE源码相关/Math/FMath.md)
 - 字符串相关
-  - [FString](../../学习笔记/字符串/FString.md)
-  - [FText](../../学习笔记/字符串/FText.md)
+  - [FString](../../学习笔记/UE源码相关/字符串/FString.md)
+  - [FText](../../学习笔记/UE源码相关/字符串/FText.md)
 - 委托相关
-  - [AddUniqueDynamic](../../学习笔记/委托/AddDynamic和AddUniqueDynamic.md)
+  - [AddUniqueDynamic](../../学习笔记/UE源码相关/委托/AddDynamic和AddUniqueDynamic.md)
 - 其他
   - [GetWorld()](../../U++学习/GetWorld().md)
-  - [GEgine](../../学习笔记/GEngine.md)
+  - [GEgine](../../学习笔记/UE源码相关/GEngine.md)
 
 
 # 总结
